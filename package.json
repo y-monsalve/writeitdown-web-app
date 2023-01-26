@@ -2,9 +2,12 @@
   "name": "writeitdown-web-app",
   "version": "0.0.0",
   "private": true,
+  
+"engines": {
+    "node": "18.x"},
   "scripts": {
     "start": "nodemon ./bin/www",
-    "migrate": "node .model/database.js"
+    "migrate": "node model/database.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -17,3 +20,4 @@
     "nodemon": "^2.0.20"
   }
 }
+
