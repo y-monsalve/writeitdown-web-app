@@ -21,3 +21,14 @@ function App() {
 }
 
 export default App;
+
+//i need a sentence like
+//if no lists
+//return create list form
+//else listview && smaller create list
+
+//if list GET && no posts in list
+//return create post form
+//else postview && smaller create post
+
+//do i set those conditionals in App.js?

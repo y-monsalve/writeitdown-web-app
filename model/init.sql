@@ -20,7 +20,7 @@ FOREIGN KEY (userID) REFERENCES users (id)
 id INT AUTO_INCREMENT,
 title VARCHAR(100),
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
-description VARCHAR(500),
+text VARCHAR(500),
 listID INT,
 imageID // not added yet 
 PRIMARY KEY (id),
@@ -36,4 +36,11 @@ FOREIGN KEY (listID) REFERENCES lists (id)
 -- FOREIGN KEY (postID) REFERENCES posts (id)
 -- );
 
-INSER INTO users (name) values ("CarlitaMaria")
+-- INSER INTO users (name) values ("CarlitaMaria")
+
+-- does this update my db in mysql? i changed it here since it made 
+-- a mistake in the command line, it still shows the previous name, i got and 
+-- error when trying to migrate
+
+-- error Command failed with exit code 1.
+-- info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
