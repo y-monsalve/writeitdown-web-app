@@ -3,25 +3,25 @@ var router = express.Router();
 const db = require("../model/helper"); //use helper after set up
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
-  res.render("index", { title: "Express" });
-});
+// router.get("/", function (req, res, next) {
+//   res.render("index", { title: "Express" });
+// });
 
 module.exports = router;
 
-router.get("/", (req, res) => {
-  res.send("Welcome to the API");
-});
-
-// router.get("/", async (req, res) => {
-//   try {
-//     const response = await db("SELECT * FROM posts");
-//     const posts = response.data;
-//     res.send({ posts });
-//   } catch (err) {
-//     res.status(500).send(err);
-//   }
+// router.get("/", (req, res) => {
+//   res.send("Welcome to the API");
 // });
+
+router.get("/", async (req, res) => {
+  try {
+    const response = await db("SELECT * FROM posts");
+    const posts = response.data;
+    res.send({ posts });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
 // router.post("/", async (req, res) => {
 //   const title = req.body.title;
