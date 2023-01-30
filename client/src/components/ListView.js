@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CreateListForm from "./CreateListForm";
 
 function ListView() {
   const [lists, setLists] = useState([
@@ -15,24 +16,51 @@ function ListView() {
       description: "here is where I will write down any good recipe",
     },
   ]);
-  const [listsLength, setListLength] = useState(lists.length);
+  const [listsLength, setListsLength] = useState(lists.length);
+  const [isListView, setListView] = useState(true);
+  const [isPostView, setIsPostView] = useState(false);
+
+  const handleChangeToListView = (isListView) => {
+    setListView(isListView);
+  };
+
+  const handleChangeToPostView = (isPostView) => {
+    setIsPostView(isPostView);
+  };
 
   return (
-    <div className="list-view">
-      {listsLength !== null ? (
-        <h2>Here are your lists:</h2>
-    <ul>
-            {lists.map((list) => (
-            <li key={list.id}>
-              {list.name}: {list.description}
-            </li>
-          ))}
-        </ul>
+    <>
+      {isListView ? (
+        <div className="list-view-container">
+          {listsLength !== null ? (
+            <div className="list-view">
+              <h2>Here are your lists:</h2>
+              <ul>
+                {lists.map((list) => (
+                  <li
+                    key={list.id}
+                    onClick={() => handleChangeToPostView(true)}
+                  >
+                    {list.name}: {list.description}
+                  </li>
+                ))}
+              </ul>{" "}
+            </div>
+          ) : (
+            <h2>You have no lists yet, create one</h2>
+          )}
+
+          <button
+            className="create-new-list"
+            onClick={() => handleChangeToListView(false)}
+          >
+            Create a list
+          </button>
+        </div>
       ) : (
-      
-        <h2>You have no lists yet, create one</h2>
+        <CreateListForm />
       )}
-    </div>
+    </>
   );
 }
 
