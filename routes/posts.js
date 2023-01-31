@@ -2,17 +2,7 @@ var express = require("express");
 var router = express.Router();
 const db = require("../model/helper"); //use helper after set up
 
-/* GET home page. */
-// router.get("/", function (req, res, next) {
-//   res.render("index", { title: "Express" });
-// });
-
-module.exports = router;
-
-// router.get("/", (req, res) => {
-//   res.send("Welcome to the API");
-// });
-
+//GET posts
 router.get("/", async (req, res) => {
   try {
     const response = await db("SELECT * FROM posts");
@@ -21,8 +11,19 @@ router.get("/", async (req, res) => {
   } catch (err) {
     res.status(500).send(err);
   }
-});
+}); // i this working on top of the list route? we cannot access any post w/o list id
 
+//GET POST by id
+router.get("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const response = await db(`SELECT xxx`);
+    const posts = response.data;
+    res.send({ posts });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 // router.post("/", async (req, res) => {
 //   const title = req.body.title;
 //   const description = req.body.description;
@@ -36,3 +37,4 @@ router.get("/", async (req, res) => {
 //     res.status(500).send(err);
 //   }
 // });
+module.exports = router;

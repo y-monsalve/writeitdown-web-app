@@ -5,8 +5,7 @@ var cookieParser = require("cookie-parser"); //what is this?
 var logger = require("morgan"); // what is this?
 
 var postRouter = require("./routes/posts");
-// var indexRouter = require("./routes/index");
-// var usersRouter = require("./routes/users"); //from express
+var listRouter = require("./routes/lists");
 
 var app = express();
 
@@ -16,9 +15,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", postRouter);
-// app.use("/", indexRouter);
-// app.use("/users", usersRouter);
+app.use("/posts", postRouter);
+app.use("/lists", listRouter);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

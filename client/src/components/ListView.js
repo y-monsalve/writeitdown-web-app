@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CreateListForm from "./CreateListForm";
+const BASE_URL = "http://localhost:3000";
 
 function ListView() {
   const [lists, setLists] = useState([
@@ -27,6 +28,16 @@ function ListView() {
   const handleChangeToPostView = (isPostView) => {
     setIsPostView(isPostView);
   };
+
+  useEffect(() => {
+    const fetchLists = async () => {
+      const response = await fetch(`${BASE_URL}/lists`);
+      const data = await response.json();
+      const lists = data.lists;
+      setLists(lists);
+    };
+    fetchLists();
+  }, []);
 
   return (
     <>

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import ListView from "./ListView";
+
+const BASE_URL = "http://localhost:3000";
 function CreateListForm({ onSubmit }) {
   const [list, setList] = useState({
     name: "",
@@ -26,11 +28,23 @@ function CreateListForm({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    //onSubmit(list);
     setList({ name: "", description: "" });
-    //console.log(`you created a list:"${list} `); //logs object object and list.value logs undefined
-    console.log({ list });
+    addList(list);
+  };
+
+  const addList = async (list) => {
+    try {
+      await fetch(`${BASE_URL}/lists`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(list),
+      });
+      window.location.reload();
+    } catch (err) {
+      console.log("Opps, something went wrong");
+    }
   };
 
   return (
@@ -38,7 +52,7 @@ function CreateListForm({ onSubmit }) {
       {isListView === false ? (
         <div className="submit-form">
           <h2>Create a list:</h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <label>
               Name
               <input
