@@ -18,6 +18,15 @@ function PostView() {
   const handleChangeToPostView = (isPostView) => {
     setIsPostView(isPostView);
   };
+  //  useEffect(() => {
+  //    const fetchLists = async () => {
+  //      const response = await fetch(`${BASE_URL}/lists`);
+  //      const data = await response.json();
+  //      const lists = data.lists;
+  //      setLists(lists);
+  //    };
+  //    fetchLists();
+  //  }, []);
   return (
     <>
       {isPostView ? (

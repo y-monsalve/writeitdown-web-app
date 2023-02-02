@@ -1,11 +1,10 @@
-import "./App.css";
 import React, { useState } from "react";
 import ListView from "./components/ListView";
 
 function App() {
   return (
     <div className="App">
-      <h1> write it down</h1>
+      <h1 class="text-4xl font-normal text-center"> write it down</h1>
       <ListView />
 
       {/* <CreatePostForm />

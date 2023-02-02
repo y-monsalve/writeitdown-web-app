@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ListView from "./ListView";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:5000";
 function CreateListForm({ onSubmit }) {
   const [list, setList] = useState({
     name: "",
@@ -41,7 +41,7 @@ function CreateListForm({ onSubmit }) {
         },
         body: JSON.stringify(list),
       });
-      window.location.reload();
+      //window.location.reload();
     } catch (err) {
       console.log("Opps, something went wrong");
     }
@@ -50,29 +50,46 @@ function CreateListForm({ onSubmit }) {
   return (
     <>
       {isListView === false ? (
-        <div className="submit-form">
-          <h2>Create a list:</h2>
-          <form onSubmit={(e) => handleSubmit(e)}>
-            <label>
-              Name
-              <input
-                type="text"
-                name="name"
-                value={list.name}
-                onChange={(e) => handleChange(e)}
-              />
-            </label>
-            <label>
-              Description
-              <input
-                type="text"
-                name="description"
-                value={list.description}
-                onChange={(e) => handleChange(e)}
-              />
-            </label>
-            <button onClick={() => handleChangeView(true)}>Create</button>
-          </form>
+        <div className="flex flex-col w-full border-opacity-50">
+          <div className="grid card bg-base-300 rounded-box place-items-center  shadow-xl ">
+            <div className="btnform-control w-full max-w-xs">
+              <h2 className="btncard-title">Create a list:</h2>
+              <div className="btncard-body">
+                <form onSubmit={(e) => handleSubmit(e)}>
+                  <label className="btnlabel">
+                    Name
+                    <input
+                      type="text"
+                      className=" btninput-bordered btninput btninput-bordered w-full max-w-xs"
+                      placeholder="Type here"
+                      name="name"
+                      value={list.name}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </label>
+                  <label className="btnlabel">
+                    Description
+                    <input
+                      type="text"
+                      className="btninput btninput-bordered w-full max-w-xs"
+                      placeholder="Type here"
+                      name="description"
+                      value={list.description}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </label>
+                  <div className="btncard-actions justify-end">
+                    <button
+                      className="btn btn-sm bg-accent-focus marg"
+                      onClick={() => handleChangeView(true)}
+                    >
+                      Create
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       ) : (
         <ListView />
@@ -82,3 +99,42 @@ function CreateListForm({ onSubmit }) {
 }
 
 export default CreateListForm;
+
+// {isListView === false ? (
+//         <div className="submit-form">
+//           <h2>Create a list:</h2>
+//           <form onSubmit={(e) => handleSubmit(e)}>
+//             <label>
+//               Name
+//               <input
+//                 type="text"
+//                 name="name"
+//                 value={list.name}
+//                 onChange={(e) => handleChange(e)}
+//               />
+//             </label>
+//             <label>
+//               Description
+//               <input
+//                 type="text"
+//                 name="description"
+//                 value={list.description}
+//                 onChange={(e) => handleChange(e)}
+//               />
+//             </label>
+//             <button
+//               className="btn btn-sm bg-accent-focus marg"
+//               onClick={() => handleChangeView(true)}
+//             >
+//               Create
+//             </button>
+//           </form>
+//         </div>
+//       ) : (
+//         <ListView />
+//       )}
+//     </>
+//   );
+// }
+
+// export default CreateListForm;
