@@ -41,7 +41,7 @@ function CreateListForm({ onSubmit }) {
         },
         body: JSON.stringify(list),
       });
-      //window.location.reload();
+      handleChangeView()
     } catch (err) {
       console.log("Opps, something went wrong");
     }
@@ -55,7 +55,7 @@ function CreateListForm({ onSubmit }) {
             <div className="btnform-control w-full max-w-xs">
               <h2 className="btncard-title">Create a list:</h2>
               <div className="btncard-body">
-                <form onSubmit={(e) => handleSubmit(e)}>
+                <form onSubmit={handleSubmit}>
                   <label className="btnlabel">
                     Name
                     <input
@@ -80,8 +80,8 @@ function CreateListForm({ onSubmit }) {
                   </label>
                   <div className="btncard-actions justify-end">
                     <button
+                      type="submit"
                       className="btn btn-sm bg-accent-focus marg"
-                      onClick={() => handleChangeView(true)}
                     >
                       Create
                     </button>
