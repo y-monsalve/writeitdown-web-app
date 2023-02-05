@@ -3,11 +3,12 @@ var express = require("express");
 var path = require("path"); //what is this?
 var cookieParser = require("cookie-parser"); //what is this?
 var logger = require("morgan"); // what is this?
-
+var cors = require("cors");
 var postRouter = require("./routes/posts");
 var listRouter = require("./routes/lists");
 
 var app = express();
+app.use(cors());
 
 app.use(logger("dev"));
 app.use(express.json());

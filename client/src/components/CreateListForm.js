@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ListView from "./ListView";
-
+import { Link } from "react-router-dom";
 const BASE_URL = "http://localhost:5000";
 function CreateListForm({ onSubmit }) {
   const [list, setList] = useState({
@@ -41,7 +41,7 @@ function CreateListForm({ onSubmit }) {
         },
         body: JSON.stringify(list),
       });
-      handleChangeView()
+      handleChangeView();
     } catch (err) {
       console.log("Opps, something went wrong");
     }
@@ -50,10 +50,12 @@ function CreateListForm({ onSubmit }) {
   return (
     <>
       {isListView === false ? (
-        <div className="flex flex-col w-full border-opacity-50">
-          <div className="grid card bg-base-300 rounded-box place-items-center  shadow-xl ">
+        <div className="flex flex-col w-full border-opacity-50 justify-center items-center">
+          <div className="grid card bg-yellow-200 m-10 p-10 w-3/5 rounded-box place-items-center  shadow-xl ">
             <div className="btnform-control w-full max-w-xs">
-              <h2 className="btncard-title">Create a list:</h2>
+              <h2 className="btncard-title tracking-wider font-semibold pb-5">
+                Create a list:
+              </h2>
               <div className="btncard-body">
                 <form onSubmit={handleSubmit}>
                   <label className="btnlabel">
@@ -69,9 +71,9 @@ function CreateListForm({ onSubmit }) {
                   </label>
                   <label className="btnlabel">
                     Description
-                    <input
+                    <textarea
                       type="text"
-                      className="btninput btninput-bordered w-full max-w-xs"
+                      className="btninput btninput-bordered max-w-xs form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                       placeholder="Type here"
                       name="description"
                       value={list.description}
@@ -79,12 +81,14 @@ function CreateListForm({ onSubmit }) {
                     />
                   </label>
                   <div className="btncard-actions justify-end">
-                    <button
-                      type="submit"
-                      className="btn btn-sm bg-accent-focus marg"
-                    >
-                      Create
-                    </button>
+                    <Link to="/">
+                      <button
+                        type="submit"
+                        className="btn btn-sm bg-accent-focus marg mt-10"
+                      >
+                        Create
+                      </button>
+                    </Link>
                   </div>
                 </form>
               </div>
@@ -99,42 +103,3 @@ function CreateListForm({ onSubmit }) {
 }
 
 export default CreateListForm;
-
-// {isListView === false ? (
-//         <div className="submit-form">
-//           <h2>Create a list:</h2>
-//           <form onSubmit={(e) => handleSubmit(e)}>
-//             <label>
-//               Name
-//               <input
-//                 type="text"
-//                 name="name"
-//                 value={list.name}
-//                 onChange={(e) => handleChange(e)}
-//               />
-//             </label>
-//             <label>
-//               Description
-//               <input
-//                 type="text"
-//                 name="description"
-//                 value={list.description}
-//                 onChange={(e) => handleChange(e)}
-//               />
-//             </label>
-//             <button
-//               className="btn btn-sm bg-accent-focus marg"
-//               onClick={() => handleChangeView(true)}
-//             >
-//               Create
-//             </button>
-//           </form>
-//         </div>
-//       ) : (
-//         <ListView />
-//       )}
-//     </>
-//   );
-// }
-
-// export default CreateListForm;
