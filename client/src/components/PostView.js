@@ -13,12 +13,9 @@ function PostView() {
     //   text: "mañana se va Brenda para Australia, acuerdate de escribirle",
     // },
   ]);
-  const [postsLength, setPostsLength] = useState(posts.length);
+  const [postsLength, setPostsLength] = useState(posts.length === null);
   const [isPostView, setIsPostView] = useState(true);
 
-  const handleChangeToPostView = (isPostView) => {
-    setIsPostView(isPostView);
-  };
   //  useEffect(() => {
   //    const fetchLists = async () => {
   //      const response = await fetch(`${BASE_URL}/lists`);

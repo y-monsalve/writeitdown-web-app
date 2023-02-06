@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import ListView from "./ListView";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 const BASE_URL = "http://localhost:5000";
 function CreateListForm({ onSubmit }) {
+  const navigate = useNavigate();
   const [list, setList] = useState({
     name: "",
     description: "",
@@ -29,7 +31,9 @@ function CreateListForm({ onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setList({ name: "", description: "" });
+
     addList(list);
+    console.log(list); //not working
   };
 
   const addList = async (list) => {
@@ -41,7 +45,8 @@ function CreateListForm({ onSubmit }) {
         },
         body: JSON.stringify(list),
       });
-      handleChangeView();
+
+      navigate("/");
     } catch (err) {
       console.log("Opps, something went wrong");
     }
@@ -51,6 +56,11 @@ function CreateListForm({ onSubmit }) {
     <>
       {isListView === false ? (
         <div className="flex flex-col w-full border-opacity-50 justify-center items-center">
+          <Link to="/">
+            <button className="btn btn-sm bg-accent-focus marg mt-10 text-center">
+              Back to Lists
+            </button>
+          </Link>
           <div className="grid card bg-yellow-200 m-10 p-10 w-3/5 rounded-box place-items-center  shadow-xl ">
             <div className="btnform-control w-full max-w-xs">
               <h2 className="btncard-title tracking-wider font-semibold pb-5">
@@ -81,14 +91,12 @@ function CreateListForm({ onSubmit }) {
                     />
                   </label>
                   <div className="btncard-actions justify-end">
-                    <Link to="/">
-                      <button
-                        type="submit"
-                        className="btn btn-sm bg-accent-focus marg mt-10"
-                      >
-                        Create
-                      </button>
-                    </Link>
+                    <button
+                      type="submit"
+                      className="btn btn-sm bg-accent-focus marg mt-10"
+                    >
+                      Create
+                    </button>
                   </div>
                 </form>
               </div>
