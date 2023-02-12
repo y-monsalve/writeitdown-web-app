@@ -47,7 +47,7 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    const response = await db(`SELECT * FROM lists where id = ${id}`);
+    const response = await db(`SELECT * FROM lists WHERE id = ${id}`);
     const list = response.data[0];
     if (!list) {
       res.status(404).send({ message: "list not found" });

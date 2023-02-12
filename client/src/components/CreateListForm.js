@@ -3,6 +3,7 @@ import ListView from "./ListView";
 import { Link, useNavigate } from "react-router-dom";
 
 const BASE_URL = "http://localhost:5000";
+
 function CreateListForm({ onSubmit }) {
   const navigate = useNavigate();
   const [list, setList] = useState({
@@ -48,7 +49,7 @@ function CreateListForm({ onSubmit }) {
 
       navigate("/");
     } catch (err) {
-      console.log("Opps, something went wrong");
+      console.log("Oops, something went wrong");
     }
   };
 
@@ -69,22 +70,20 @@ function CreateListForm({ onSubmit }) {
               <div className="btncard-body">
                 <form onSubmit={handleSubmit}>
                   <label className="btnlabel">
-                    Name
                     <input
                       type="text"
-                      className=" btninput-bordered btninput btninput-bordered w-full max-w-xs"
-                      placeholder="Type here"
+                      className=" btninput-bordered btninput border border-solid rounded border-gray-300 px-1 font-light  w-full max-w-xs"
+                      placeholder="Give your list a name"
                       name="name"
                       value={list.name}
                       onChange={(e) => handleChange(e)}
                     />
                   </label>
                   <label className="btnlabel">
-                    Description
                     <textarea
                       type="text"
-                      className="btninput btninput-bordered max-w-xs form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                      placeholder="Type here"
+                      className="btninput btninput-bordered max-w-xs form-control block w-full mt-5 px-1 py-1.5 text-base font-light text-gray-700 bg-white border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-black"
+                      placeholder="What are you going to write about in this list?"
                       name="description"
                       value={list.description}
                       onChange={(e) => handleChange(e)}

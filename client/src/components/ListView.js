@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-import CreateListForm from "./CreateListForm";
 const BASE_URL = "http://localhost:5000";
 
 function ListView(props) {
+  const params = useParams();
+
   const [lists, setLists] = useState([{}]);
   const [listsLength, setListsLength] = useState(lists.length);
   const [isListView, setListView] = useState(true);
@@ -32,7 +33,7 @@ function ListView(props) {
               </h2>
               <ul>
                 {lists.map((list) => (
-                  <Link to="/lists/{id}/posts">
+                  <Link to="/lists/1/posts">
                     <li
                       className="hover:italic "
                       key={list.id}
