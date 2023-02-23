@@ -1,6 +1,6 @@
 require("dotenv").config();
 const mysql = require("mysql");
-const fs = require("fs");
+const fs = require("fs"); // in order to use the init
 
 const DB_HOST = process.env.DB_HOST;
 const DB_USER = process.env.DB_USER;
