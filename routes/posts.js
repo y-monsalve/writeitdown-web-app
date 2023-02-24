@@ -40,11 +40,11 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const title = req.body.title;
   const text = req.body.text;
-  const created_at = req.body.created_at; // this should get the timestamp and added to created_at
-  const list_id = req.body.id; //which id?
+  // const created_at = req.body.created_at; // this should get the timestamp and added to created_at
+  const list_id = req.body.list_id; //which id?
   try {
     const addPost = await db(
-      `INSERT INTO posts (title, text, created_at, list_id) VALUES ("${title}","${text}", "${created_at}", "${list_id}")`
+      `INSERT INTO posts (title, text, list_id) VALUES ("${title}","${text}", "${list_id}")`
     );
     res.status(200).send({ message: "post created" });
   } catch (err) {
