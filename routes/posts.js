@@ -30,8 +30,9 @@ router.get("/", async (req, res) => {
 // });
 
 router.get("/", async (req, res) => {
-  const list_id = req.query.id;
+  const list_id = req.body.list_id;
   const posts = await db(` SELECT * FROM posts WHERE list_id = ${list_id}`);
+  res.send({ posts }); //added after presentation have not tested
   res.status(200).json(post);
 });
 

@@ -6,10 +6,9 @@ var logger = require("morgan"); // what is this?
 var cors = require("cors");
 var postRouter = require("./routes/posts");
 var listRouter = require("./routes/lists");
-
 var app = express();
-app.use(cors());
 
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

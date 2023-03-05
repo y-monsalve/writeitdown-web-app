@@ -18,6 +18,6 @@ CREATE TABLE posts  (
 ALTER TABLE posts
 ADD FOREIGN KEY (list_id) REFERENCES lists(id);
 
--- INSERT INTO lists(name, description) VALUES ('test list', 'test description of test list');
--- INSERT INTO posts(title, text, list_id) VALUES ('test post of test list ', 'here is some text for the text of the test post', 1);
+INSERT INTO lists(name, description) VALUES ('test list', 'test description of test list');
+INSERT INTO posts(title, text, list_id) VALUES ('test post of test list ', 'here is some text for the text of the test post', 1);
 
